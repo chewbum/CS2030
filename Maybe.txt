@@ -1,0 +1,33 @@
+abstract class Maybe<T> {
+	private final T thing = value;
+
+ 	static <T> Maybe<T> of(T value) {
+        	return new Maybe<T>() {
+
+			public <R> Maybe<R> map(Function<? super T, ? extends R> mapper) {
+				return Maybe.<R>of(mapper.apply(this.thing));
+			}
+
+	@Override
+	public String toString() {
+		return "Maybe[" + thing + "]";
+	}
+} 
+
+	static <T> Maybe<T> empty() {
+		return new Maybe<T>() {	
+			public <R> Maybe<R> map(Function<? super T, ? extends R> mapper) {
+				return Maybe.<R>empty();
+			}	
+		
+		@Override
+		public String toString() {
+			return "Maybe.empty";
+	}
+}
+
+
+abstract <R> Maybe<R> map(Function<? super T, ? extends R> mapper)
+
+
+}

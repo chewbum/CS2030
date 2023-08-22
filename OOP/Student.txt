@@ -1,0 +1,71 @@
+abstract class Student {
+	
+	private final String id; 
+
+	Student(String id) {
+		this.id = id;
+	}
+
+	String getId() {
+		return this.id;
+	}
+	
+	double getCAP() {
+		return 5.0;
+	}
+
+	abstract double getLoan();
+
+}
+
+
+class UG extends Student { 
+	
+	UG(String id) {
+		super(id);
+	}
+	
+	double getLoan() {
+		return 99.99;
+	}
+	
+
+}
+
+class PG extends Student {
+	
+	PG(String id) {
+		super(id);
+	}
+
+	double getLoan() {
+		return 111.11;
+	}
+
+}
+
+class Admin {
+
+	Admin() {
+	}
+	
+	void process(List<Student> students) {
+		for (Student s : students) { 
+			System.out.println(s.getId() + " : " + s.getCAP());
+		}
+	}
+}
+
+class Bursar {
+
+	Bursar() {
+	}
+	
+	void process(List<Student> students) {
+		for (Student s : students) { 
+			System.out.println(s.getId() + " : " + s.getLoan());
+		}
+	}
+}
+
+	

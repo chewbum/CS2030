@@ -1,0 +1,30 @@
+class IfElse<T,R> {
+		
+	private final Predicate<T> condition;
+	private final Function<T,R> positve;
+	private final Function<T,R> negative;
+
+	static <T,R> IfElse<T,R> of(Predicate<T> condition, Function<T,R> positive, Function<T,R> negative) {
+		return new IfElse(condition, positive, negative);
+	} 
+	
+	IfElse(Predicate<T> condition, Function<T,R> positive, Function<T,R> negative) {
+		this.condition = condition;	
+		this.positive = positive;
+		this.negative = negative;
+	}
+
+	boolean apply(T testInput) { 
+		return Optional.of(testInput).filter(this.condition).map(this.positive).equals(Optional.of(testInput).map(this.negative));
+	}
+
+	IfElse<T,R> mapIf(IfElse<T,R> not100) {
+		return new IfELse<T,R>(this.condition.and(not100.getPred()), this.positive, this.negative);
+	}
+
+	IfElse<T,R> mapElse(IfElse<T,R> div4Not100) {
+		return new IfELse<T,R>(this.condition.or(div4Not100.getPred()), this.positive, this.negative);
+    }
+
+		
+}
